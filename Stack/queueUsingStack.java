@@ -4,23 +4,37 @@ import java.util.Stack;
 
 public class queueUsingStack{
     
-    public static void main(String[] args) {
-        Stack<Integer> s1 = new Stack<>();
-        Stack<Integer> s2 = new Stack<>();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter number of elements: ");
-        int n = sc.nextInt();
-        for(int i=0;i<n;i++){
-            int x = sc.nextInt();
-            s1.push(x);
-        }
-        for(int i=0;i<n;i++){
-            int x = sc.nextInt();
-            s2.push(x);
-        }
-
+    static Stack<Integer> s1 = new Stack<>();
+    static Stack<Integer> s2 = new Stack<>();
+    
+    void enQueue(int data){
+        s1.push(data);
     }
 
+    int deQueue(){
+        int n;
+        if(s1.empty() && s2.empty()){
+            System.out.println("Empty");
+            System.exit(0);
+        }
 
+        if(s2.empty()){
+            while(!s1.empty()){
+                n = s1.pop();
+                s2.push(n);
+            }
+        }
+        n = s2.pop();
+        return n;
+    }
+    public static void main(String[] args) {
+        queueUsingStack q = new queueUsingStack();
+        q.enQueue(1);
+        q.enQueue(2);
+        q.enQueue(3);
+        q.enQueue(4);
 
+        System.out.println("Deleted element: "+q.deQueue());
+        
+    }
 }
