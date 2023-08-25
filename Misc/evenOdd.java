@@ -1,6 +1,32 @@
 import java.util.Scanner;
 
 public class evenOdd{
+
+    public static void qs(int arr[],int p,int r){
+        if(p<r){
+            int q = pivot(arr,p,r);
+            qs(arr,p,q-1);
+            qs(arr,q+1,r);
+        }
+    }
+
+    public static int pivot(int arr[],int p,int r){
+        int x = arr[r];
+        int i = p-1;
+        for(int j = p; j<r; j++){
+            if(arr[j]<=x){
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        i++;
+        int temp = arr[i];
+        arr[i] = arr[r];
+        arr[r] = temp;
+        return i;
+    }
     
     public static void swap(int[] arr,int x,int y){
         int temp = arr[x];
